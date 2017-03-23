@@ -1,0 +1,136 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Taschenrechner</title>
+<script type="text/javascript">
+function Check(Eingabe) {
+  var nur_das ="0123456789[]()-+*/%÷.";
+  for (var i = 0; i < Eingabe.length; i++)
+   if (nur_das.indexOf(Eingabe.charAt(i))<0 ) return false;
+  return true;
+ }
+
+ function Ergebnis() {
+   var x = 0;
+   var neuesScript = "/"
+   var str = "÷"
+   var Display = window.document.Rechner.Display.value
+   var res = Display.replace(str,neuesScript)
+  if (Check(res))
+     x = eval(res);
+
+   window.document.Rechner.Display.value = x;
+   document.getElementById("Display1").innerHTML = document.getElementById("Display1").innerHTML +  Display + " = " + x + "<br>"
+
+
+
+ }
+
+ function Hinzufuegen(Zeichen) {
+   window.document.Rechner.Display.value =
+   window.document.Rechner.Display.value + Zeichen;
+ }
+
+ function Sonderfunktion(Funktion) {
+   if (Check(window.document.Rechner.Display.value)) {
+     if(Funktion == "sqrt") {
+       var x = 0;
+     x = eval(window.document.Rechner.Display.value);
+     window.document.Rechner.Display.value = Math.sqrt(x);
+   }
+   if(Funktion == "pow") {
+     var x = 0;
+     x = eval(window.document.Rechner.Display.value);
+     window.document.Rechner.Display.value = x * x;
+   }
+
+
+   if(Funktion == "log") {
+     var x = 0;
+     x = eval(window.document.Rechner.Display.value);
+     window.document.Rechner.Display.value = Math.log(x);
+   }
+  } else window.document.Rechner.Display.value = 0
+
+}
+
+</script>
+<style type="text/css">
+
+
+
+.button {  border-radius:10px;
+           width:60px; text-align:center;
+           font-family:System,sans-serif;
+           font-size:100%;color:#FFFFFF }
+#button1,#button2,#button3,#button4,#button14,#button15,#button30,#button31,#button32,#button33 { background-color: #3B170B
+
+}
+#button5,#button6,#button7,#button8,#button9,#button10,#button11,#button12,#button13,#button14 { background-color :#190707}
+#button16{background-color:#FF8000}
+#Display1{height:150px;
+          background-color: white;
+          overflow: hidden;
+
+         }
+.display { width:100%;
+           text-align: right;
+           vertical-align: bottom;
+           font-family:System,sans-serif;
+           font-size:100%;display:flex;
+           justify-content:flex-end;
+           align-items:flex-end;
+         }
+table     {height:200px}
+
+
+</style>
+</head>
+<body bgcolor="#FFFFE0" text="#000000">
+
+<form name="Rechner" action="" onSubmit="Ergebnis();return false;">
+<table border="5" cellpadding="10" cellspacing="0">
+<tr>
+  <td bgcolor="#190707">
+  <div id="Display1" class="display" ></div></td>
+</tr>
+<tr>
+<td bgcolor="#190707">
+<input type="text" name="Display" align="right" class="display"></td>
+</tr><tr>
+<td  bgcolor="#190707">
+<table border="0" cellpadding="0" cellspacing="2">
+<tr>
+<td><input type="button" width="60" class="button" id="button30"value=" log " onClick="Sonderfunktion('log')"></td>
+<td><input type="button" width="60" class="button" id="button5" value="  7   " onClick="Hinzufuegen('7')"></td>
+<td><input type="button" width="60" class="button" id="button6" value="  8   " onClick="Hinzufuegen('8')"></td>
+<td><input type="button" width="60" class="button" id="button7" value="  9   " onClick="Hinzufuegen('9')"></td>
+<td><input type="button" width="60" class="button" id="button1" value="  ÷   " onClick="Hinzufuegen('÷')"></td>
+</tr>
+<tr>
+<td><input type="button" width="60" class="button" id="button31"value="sqrt " onClick="Sonderfunktion('sqrt')"></td>
+<td><input type="button" width="60" class="button" id="button8" value="  4   " onClick="Hinzufuegen('4')"></td>
+<td><input type="button" width="60" class="button" id="button9" value="  5   " onClick="Hinzufuegen('5')"></td>
+<td><input type="button" width="60" class="button" id="button10"value="  6   " onClick="Hinzufuegen('6')"></td>
+<td><input type="button" width="60" class="button" id="button2" value="  *   " onClick="Hinzufuegen('*')"></td>
+</tr>
+<tr>
+<td><input type="button" width="60" class="button" id="button32"value=" pow " onClick="Sonderfunktion('pow')"></td>
+<td><input type="button" width="60" class="button" id="button11"value="  1   " onClick="Hinzufuegen('1')"></td>
+<td><input type="button" width="60" class="button" id="button12"value="  2   " onClick="Hinzufuegen('2')"></td>
+<td><input type="button" width="60" class="button" id="button13"value="  3   " onClick="Hinzufuegen('3')"></td>
+<td><input type="button" width="60" class="button" id="button3" value="  -   " onClick="Hinzufuegen('-')"></td>
+</tr>
+<tr>
+<td><input type="reset"  width="60" class="button" id="button33"value="  C  "></td>
+<td><input type="button" width="60" class="button" id="button14"value="  0   " onClick="Hinzufuegen('0')"></td>
+<td><input type="button" width="60" class="button" id="button15"value="  .   " onClick="Hinzufuegen('.')"></td>
+<td><input type="button" width="60" class="button" id="button16"value="  =   "              onClick="Ergebnis()"></td>
+<td><input type="button" width="60" class="button" id="button4"value="  +   " onClick="Hinzufuegen('+')"></td>
+</tr>
+</table>
+</td></tr></table>
+</form>
+
+</body>
+</html>
